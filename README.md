@@ -1,94 +1,66 @@
 # CoworkSpace Management Platform
 
-A modern, production-ready system for managing coworking locations, workspaces, reservations, memberships, billing, visitors, notifications, and administrative operations.
+A modern, scalable management platform designed for coworking spaces to handle locations, workspaces, reservations, memberships, billing, visitors, notifications, and administrative operations.
 
 ## Overview
 
-The CoworkSpace Management Platform provides a complete end-to-end solution for coworking businesses. It enables members to browse spaces, manage their memberships, and book desks or meeting rooms. Concurrently, it offers administrators and staff a powerful dashboard to manage the entire coworking operation, monitor occupancy, track revenue, and communicate with members.
+This system provides a complete solution for coworking operations:
+- Members can browse available spaces, make reservations, manage their profiles, and track payment history.
+- Receptionists and staff can handle visitor registrations and daily check-ins.
+- Administrators get full control over locations, spaces, plans, billing, and operational metrics via a powerful Filament dashboard.
 
 ## Technology Stack
 
-This project is built using a modern PHP/Laravel ecosystem:
-
-- **Core:** Laravel 13 (PHP 8.3+)
-- **Admin Panel:** Filament
-- **Frontend:** Laravel Blade, Tailwind CSS v4, Vite
-- **Database:** MySQL 8.4
-- **Search:** Meilisearch
-- **Caching & Queues:** Redis
-- **Email Testing:** Mailpit
-- **Local Environment:** Laravel Sail (Docker)
+The platform is built using a modern, robust Laravel stack:
+- **Framework**: Laravel 13 (PHP 8.3+)
+- **Admin Panel**: Filament
+- **Frontend**: Blade, Tailwind CSS v4, Vite
+- **Database**: MySQL 8.4
+- **Services**: 
+  - **Redis** (Queues, Cache)
+  - **Meilisearch** (Advanced Search)
+  - **Mailpit** (Local Email Testing)
+- **Infrastructure**: Laravel Sail / Docker
 
 ## Planned Modules
 
-*Note: The following modules are planned for future development and are not yet implemented.*
+*(Note: These modules are currently in the planning/architectural phase and will be introduced progressively.)*
 
-- **Authentication & Authorization**: Granular roles for administrators, managers, receptionists, staff, and members.
-- **Workspace Management**: Hierarchical management of Locations, Floors, and Spaces (hot desks, private offices, meeting rooms).
-- **Membership Management**: Subscription tracking and membership rules.
-- **Booking System**: Conflict-free reservations with strict server-side validation.
-- **Payment & Invoicing**: Internal billing structures and invoice generation.
-- **Search**: Fast, synchronized entity searching via Meilisearch.
-- **Notifications**: Automated emails and in-app alerts for bookings, invoices, and visitors.
-- **Visitor Management**: Check-in and check-out workflows for guests.
-- **Dashboard & Reporting**: Real-time occupancy, revenue, and member statistics.
+- **Authentication and Authorization**: Granular roles (Admin, Manager, Receptionist, Member).
+- **Workspace Management**: Hierarchical tracking of Locations → Floors → Spaces (hot desks, private offices, meeting rooms).
+- **Membership Management**: Subscriptions, plans, and access rules.
+- **Booking System**: Robust reservation engine with server-side conflict prevention.
+- **Payment and Invoicing**: Internal billing and invoice tracking (extensible for future payment gateways).
+- **Search**: High-performance entity search powered by Meilisearch.
+- **Notifications**: Automated emails and alerts for bookings and invoices.
+- **Visitor Management**: Reception workflows for guest check-ins.
+- **Dashboard and Reporting**: Real-time metrics based on actual database records.
 
 ## Local Development
 
 ### Prerequisites
-- Docker Desktop (or equivalent)
-- Composer
-- Node.js & NPM
+- Docker Desktop
+- PHP & Composer (locally, or use Sail directly)
 
-### Setup
+### Environment Configuration
+Never commit real credentials to the repository. Developers should create their local `.env` file from the provided template:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/kushalpaudelDev/coworkspace-management-platform.git
-   cd coworkspace
-   ```
+```bash
+cp .env.example .env
+```
 
-2. **Environment Configuration:**
-   Copy the example environment file and configure it. **Never commit actual credentials to `.env`.**
-   ```bash
-   cp .env.example .env
-   ```
-   *(Note: The `APP_KEY` will be generated in the next steps)*
+Ensure you generate an application key:
+```bash
+./vendor/bin/sail artisan key:generate
+```
 
-3. **Install Dependencies:**
-   ```bash
-   composer install
-   npm install
-   ```
+### Running the Application
+The project uses Laravel Sail for its local Docker environment. Start the infrastructure using:
 
-4. **Start the Docker Environment:**
-   We use Laravel Sail to manage the local Docker setup.
-   ```bash
-   ./vendor/bin/sail up -d
-   ```
-   *(We recommend adding `alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'` to your shell profile)*
+```bash
+./vendor/bin/sail up -d
+```
 
-5. **Generate Application Key:**
-   ```bash
-   sail artisan key:generate
-   ```
-
-6. **Run Migrations:**
-   ```bash
-   sail artisan migrate
-   ```
-
-7. **Compile Frontend Assets:**
-   ```bash
-   sail npm run dev
-   ```
-
-The application will be accessible at `http://localhost`.
-
-## Development Workflow
-
-This repository strictly follows a two-tier branch strategy:
-- `main`: Represents the stable, deployable state of the application.
-- `develop`: The active integration branch.
-
-Feature development should branch off `develop` (e.g., `feature/authentication`, `feature/workspace-management`) and be merged back via pull request. Empty branches should not be created until development actively begins.
+### Development Workflow
+- `main` is the primary, stable branch.
+- Feature branches (`feature/*`) will be created for individual modules during active development.
