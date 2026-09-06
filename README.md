@@ -22,9 +22,7 @@ The platform is built using a modern, robust Laravel stack:
   - **Mailpit** (Local Email Testing)
 - **Infrastructure**: Laravel Sail / Docker
 
-## Planned Modules
-
-*(Note: These modules are currently in the planning/architectural phase and will be introduced progressively.)*
+##Features
 
 - **Authentication and Authorization**: Granular roles (Admin, Manager, Receptionist, Member).
 - **Workspace Management**: Hierarchical tracking of Locations → Floors → Spaces (hot desks, private offices, meeting rooms).
@@ -42,25 +40,3 @@ The platform is built using a modern, robust Laravel stack:
 - Docker Desktop
 - PHP & Composer (locally, or use Sail directly)
 
-### Environment Configuration
-Never commit real credentials to the repository. Developers should create their local `.env` file from the provided template:
-
-```bash
-cp .env.example .env
-```
-
-Ensure you generate an application key:
-```bash
-./vendor/bin/sail artisan key:generate
-```
-
-### Running the Application
-The project uses Laravel Sail for its local Docker environment. Start the infrastructure using:
-
-```bash
-./vendor/bin/sail up -d
-```
-
-### Development Workflow
-- `main` is the primary, stable branch.
-- Feature branches (`feature/*`) will be created for individual modules during active development.
