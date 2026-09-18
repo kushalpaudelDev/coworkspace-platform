@@ -22,8 +22,7 @@ The platform is built using a modern, robust Laravel stack:
   - **Mailpit** (Local Email Testing)
 - **Infrastructure**: Laravel Sail / Docker
 
-## Planned Modules
-
+##Features
 
 - **Authentication and Authorization**: Granular roles (Admin, Manager, Receptionist, Member).
 - **Workspace Management**: Hierarchical tracking of Locations → Floors → Spaces (hot desks, private offices, meeting rooms).
@@ -39,4 +38,5 @@ The platform is built using a modern, robust Laravel stack:
 
 ### Prerequisites
 - Docker Desktop
-- PHP & Composer (locally, or  Sail directly)
+- PHP & Composer (locally, or use Sail directly)
+
